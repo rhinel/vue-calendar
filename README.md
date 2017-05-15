@@ -4,7 +4,21 @@
 
 ## 使用方式
 
+```
+bash:
+npm i vue2-mobile-calendar --save
 
+*.js:
+import vueCalendar from 'vue2-mobile-calendar'
+
+*.vue:
+components: {
+  vueCalendar: vueCalendar
+}
+
+html:
+<vue-calendar></vue-calendar>
+```
 
 ## 参数
 **不支持低版本浏览器，懒得适配**
