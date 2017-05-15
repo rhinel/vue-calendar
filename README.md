@@ -4,26 +4,28 @@
 
 ## 使用方式
 
-```
-bash:
+``` bash
+# bash:
 npm i vue2-mobile-calendar --save
-
-*.js:
+```
+``` javascript
+// *.js:
 import vueCalendar from 'vue2-mobile-calendar'
 
-*.vue:
+// *.vue:
 components: {
   vueCalendar: vueCalendar
 }
-
-html:
+```
+``` html
+<!-- html: -->
 <vue-calendar></vue-calendar>
 ```
 
 ## 参数
 **不支持低版本浏览器，懒得适配**
 
-```
+``` javascript
 highlight: {
   type: String,
   default: '#000'
