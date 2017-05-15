@@ -400,8 +400,7 @@ export default {
       cursor: pointer;
     }
     .yam {
-      line-height: 100%;
-      margin-top: -0.1%;
+      line-height: 16px;
       margin-right: 10px;
       margin-left: 10px;
     }
