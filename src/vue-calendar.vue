@@ -31,7 +31,7 @@
           change: changeIng
         }" :style="{
           transform: 'translateX(' + (srollTouch.touchMoveX - srollTouch.touchStartX) + 'px)'
-        }" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchend($event)" @touchcancel="touchend($event)">
+        }" @touchstart.stop.prevent="touchstart($event)" @touchmove.stop="touchmove($event)" @touchend.stop="touchend($event)" @touchcancel.stop="touchcancel($event)">
         <div class="vue-calendar-days" :class="{
             hide: !monthOpen
           }" :style="{
@@ -305,8 +305,8 @@ export default {
       this.pm = m || prev.m
       this.prevDates = this.monthDay(this.py, this.pm)
     },
-    async nextMonth (type) {
-      if (this.changeIng && !type) return
+    async nextMonth () {
+      if (this.changeIng) return
       this.changeIng = true
       this.isNext = true
       await this.takeBack(300)
@@ -315,8 +315,8 @@ export default {
       this.m = this.nm
       this.srollDone()
     },
-    async prevMonth (type) {
-      if (this.changeIng && !type) return
+    async prevMonth () {
+      if (this.changeIng) return
       this.changeIng = true
       this.isPrev = true
       await this.takeBack(300)
@@ -334,38 +334,41 @@ export default {
     },
     srollDone () {
       this.changeIng = false
+      this.srollTouch.touchStartX = this.srollTouch.touchMoveX = 0
       this.isNext = this.isPrev = false
       this.getNextMonthDate()
       this.getPrevMonthDate()
     },
     touchstart (e) {
-      if (!this.monthOpen) return
+      if (!this.monthOpen || this.changeIng) return
       this.srollTouch.touchStartX = this.srollTouch.touchMoveX = e.targetTouches[0].pageX
       this.srollTouch.touchStartY = this.srollTouch.touchMoveY = e.targetTouches[0].pageY
     },
     touchmove (e) {
-      if (!this.monthOpen) return
+      if (!this.monthOpen || this.changeIng) return
       this.srollTouch.touchMoveX = e.targetTouches[0].pageX
       this.srollTouch.touchMoveY = e.targetTouches[0].pageY
     },
     async touchend (e) {
-      if (!this.monthOpen) return
-      this.changeIng = true
+      if (!this.monthOpen || this.changeIng) return
       let elWidth = this.el.offsetWidth / 7
       let range = this.srollTouch.touchMoveX - this.srollTouch.touchStartX
       if (- range > elWidth) {
-        this.nextMonth(true)
-        this.srollTouch.touchStartX = this.srollTouch.touchMoveX = 0
+        this.nextMonth()
       } else if (range > elWidth) {
-        this.prevMonth(true)
-        this.srollTouch.touchStartX = this.srollTouch.touchMoveX = 0
+        this.prevMonth()
       } else {
+        this.changeIng = true
         this.srollTouch.touchStartX = this.srollTouch.touchMoveX = 0
         await this.takeBack(300)
         this.changeIng = false
       }
       this.srollTouch.touchEndX = e.changedTouches[0].pageX
       this.srollTouch.touchEndY = e.changedTouches[0].pageY
+    },
+    touchcancel (e) {
+      alert(1)
+      this.touchend(e)
     }
   }
 }
