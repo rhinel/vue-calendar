@@ -2,7 +2,7 @@
   "name": "vue2-mobile-calendar",
   "packageName": "vue-calendar",
   "description": "没什么用的移动端日历",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "rhinel <rhinelkc@hotmail.com>",
   "private": false,
   "scripts": {

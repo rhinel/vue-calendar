@@ -31,7 +31,7 @@
           change: changeIng
         }" :style="{
           transform: 'translateX(' + (srollTouch.touchMoveX - srollTouch.touchStartX) + 'px)'
-        }" @touchstart.stop.prevent="touchstart($event)" @touchmove.stop="touchmove($event)" @touchend.stop="touchend($event)" @touchcancel.stop="touchend($event)">
+        }" @touchstart.stop="touchstart($event)" @touchmove.stop="touchmove($event)" @touchend.stop="touchend($event)" @touchcancel.stop="touchend($event)">
         <div class="vue-calendar-days" :class="{
             hide: !monthOpen
           }" :style="{
