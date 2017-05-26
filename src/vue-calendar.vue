@@ -48,8 +48,8 @@
                   today: isToday(item.year, item.month, item.date),
                   on: isSelect(item.year, item.month, item.date)
                 }" :style="{
-                  backgroundColor: isSelect(item.year, item.month, item.date) ? highlight : '',
-                  borderColor: isToday(item.year, item.month, item.date) ? highlight : ''
+                  backgroundColor: isSelect(item.year, item.month, item.date) ? selectcolor : '',
+                  borderColor: isSelect(item.year, item.month, item.date) ? selectcolor : (isToday(item.year, item.month, item.date) ? highlight : '')
                 }">
                 {{zero(item.date)}}
               </span>
@@ -72,8 +72,8 @@
                   today: isToday(item.year, item.month, item.date),
                   on: isSelect(item.year, item.month, item.date)
                 }" :style="{
-                  backgroundColor: isSelect(item.year, item.month, item.date) ? highlight : '',
-                  borderColor: isToday(item.year, item.month, item.date) ? highlight : ''
+                  backgroundColor: isSelect(item.year, item.month, item.date) ? selectcolor : '',
+                  borderColor: isSelect(item.year, item.month, item.date) ? selectcolor : (isToday(item.year, item.month, item.date) ? highlight : '')
                 }">
                 {{zero(item.date)}}
               </span>
@@ -96,8 +96,8 @@
                   today: isToday(item.year, item.month, item.date),
                   on: isSelect(item.year, item.month, item.date)
                 }" :style="{
-                  backgroundColor: isSelect(item.year, item.month, item.date) ? highlight : '',
-                  borderColor: isToday(item.year, item.month, item.date) ? highlight : ''
+                  backgroundColor: isSelect(item.year, item.month, item.date) ? selectcolor : '',
+                  borderColor: isSelect(item.year, item.month, item.date) ? selectcolor : (isToday(item.year, item.month, item.date) ? highlight : '')
                 }">
                 {{zero(item.date)}}
               </span>
@@ -117,6 +117,10 @@ export default {
       type: String,
       default: '#000'
     },
+    selectcolor: {
+      type: String,
+      default: '#000'
+    },
     weekstart: {
       type: Number,
       default: 7
@@ -132,6 +136,10 @@ export default {
       default () {
         return () => {}
       }
+    },
+    open: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -172,7 +180,7 @@ export default {
     this.dates = this.monthDay(this.y, this.m)
     this.getNextMonthDate()
     this.getPrevMonthDate()
-    // this.trgWeek()
+    !this.open && this.trgWeek()
   },
   mounted () {
     this.el = document.querySelector('.vue-calendar')

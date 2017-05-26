@@ -1,6 +1,13 @@
 <template>
   <div class="app">
-    <vue-calendar highlight="#1D8CE0" :weekstart="1" selectdate="2017-5-10" :callback="callback"></vue-calendar>
+    <vue-calendar
+      selectcolor="#ff5c26"
+      highlight="#1D8CE0"
+      :weekstart="1"
+      selectdate="2017-5-10"
+      :callback="callback"
+      :open="false"
+      ></vue-calendar>
   </div>
 </template>
 

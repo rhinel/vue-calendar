@@ -14,7 +14,7 @@ import vueCalendar from 'vue2-mobile-calendar'
 
 // *.vue:
 components: {
-  vueCalendar: vueCalendar
+  vueCalendar
 }
 ```
 ``` html
@@ -27,6 +27,10 @@ components: {
 
 ``` javascript
 highlight: {
+  type: String,
+  default: '#000'
+},
+selectcolor: {
   type: String,
   default: '#000'
 },
@@ -45,6 +49,10 @@ callback: {
   default () {
     return () => {}
   }
+},
+open: {
+  type: Boolean,
+  default: false
 }
 ```
 
