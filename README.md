@@ -1,5 +1,7 @@
 # vue-calendar
 
+[![npm](https://img.shields.io/npm/dm/vue2-mobile-calendar.svg?style=plastic)](https://www.npmjs.com/package/vue2-mobile-calendar)
+
 > 没什么用的移动端日历，支持左右滑动，支持缩小显示周日历，自己看demo呗。
 
 ## 使用方式
